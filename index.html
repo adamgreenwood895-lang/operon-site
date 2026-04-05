@@ -8,6 +8,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
+
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -15,22 +17,26 @@
   font-family: 'Inter', sans-serif;
 }
 
+/* BACKGROUND */
 body {
   background: radial-gradient(circle at 20% 30%, rgba(120,90,255,0.15), transparent),
               radial-gradient(circle at 80% 70%, rgba(180,100,255,0.15), transparent),
               #05070f;
-
   color: white;
 }
-  h1, h2, h3, p {
-  color: white;
-  }
+
+/* CONTAINER */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
 /* NAV */
 nav {
   display: flex;
   justify-content: space-between;
-  padding: 24px 60px;
+  padding: 24px 0;
   align-items: center;
 }
 
@@ -44,17 +50,24 @@ nav {
   padding: 10px 20px;
   border-radius: 20px;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.nav-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(120,90,255,0.6);
 }
 
 /* HERO */
 .hero {
   text-align: center;
-  padding: 120px 20px 80px;
+  padding: 140px 20px 100px;
 }
 
 .hero h1 {
-  font-size: 56px;
-  line-height: 1.1;
+  font-size: 52px;
+  line-height: 1.15;
+  font-weight: 600;
 }
 
 .hero h1 span {
@@ -65,14 +78,19 @@ nav {
 
 .hero p {
   margin-top: 20px;
-  opacity: 0.7;
+  opacity: 0.6;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* BUTTONS */
 .buttons {
   margin-top: 30px;
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 14px;
+  flex-wrap: wrap;
 }
 
 .btn-primary {
@@ -81,11 +99,12 @@ nav {
   border-radius: 30px;
   cursor: pointer;
   transition: 0.3s;
+  box-shadow: 0 0 20px rgba(120,90,255,0.4);
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 20px rgba(120, 90, 255, 0.6);
+  transform: translateY(-3px);
+  box-shadow: 0 0 30px rgba(120,90,255,0.7);
 }
 
 .btn-secondary {
@@ -102,8 +121,8 @@ nav {
 
 /* SECTION */
 .section {
+  padding: 120px 20px 80px;
   text-align: center;
-  padding: 80px 20px;
 }
 
 .section h2 {
@@ -114,23 +133,43 @@ nav {
 .cards {
   display: flex;
   justify-content: center;
-  gap: 30px;
-  margin-top: 50px;
+  gap: 28px;
+  margin-top: 60px;
   flex-wrap: wrap;
 }
 
 .card {
+  width: 320px;
+  padding: 32px;
+  border-radius: 24px;
   background: rgba(255,255,255,0.03);
   backdrop-filter: blur(20px);
-  border-radius: 20px;
-  padding: 30px;
-  transition: 0.3s;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 
+    0 20px 40px rgba(0,0,0,0.6),
+    0 0 40px rgba(120,90,255,0.15);
 }
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(255,255,255,0.05), transparent 60%);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
 .card h3 {
   font-size: 22px;
   margin-bottom: 10px;
@@ -138,7 +177,8 @@ nav {
 
 .card p {
   opacity: 0.7;
-  font-size: 
+  font-size: 14px;
+}
 
 .learn {
   margin-top: 24px;
@@ -150,18 +190,25 @@ nav {
 .card:hover .learn {
   opacity: 1;
   transform: translateX(6px);
-  }
 }
 
 /* COLOURS */
-.ordo { border-color: rgba(100,150,255,0.5); }
-.orbis { border-color: rgba(180,100,255,0.5); }
-.moto { border-color: rgba(255,120,50,0.6); }
+.ordo {
+  border: 1px solid rgba(100,150,255,0.4);
+}
+
+.orbis {
+  border: 1px solid rgba(180,100,255,0.4);
+}
+
+.moto {
+  border: 1px solid rgba(255,120,50,0.5);
+}
 
 /* MIC */
 .mic-section {
   text-align: center;
-  padding: 80px 20px 40px;
+  padding: 100px 20px 60px;
 }
 
 .mic {
@@ -173,16 +220,20 @@ nav {
   align-items: center;
   justify-content: center;
   margin: auto;
+  font-size: 32px;
+  animation: pulse 3s infinite;
   transition: 0.3s;
 }
 
 .mic:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 30px rgba(120, 90, 255, 0.7);
+  transform: scale(1.1);
+  box-shadow: 0 0 40px rgba(120,90,255,0.8);
 }
 
-.mic span {
-  font-size: 30px;
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(120,90,255,0.6); }
+  70% { box-shadow: 0 0 0 20px rgba(120,90,255,0); }
+  100% { box-shadow: 0 0 0 0 rgba(120,90,255,0); }
 }
 
 /* FOOTER */
@@ -197,65 +248,79 @@ nav {
 @media (max-width: 768px) {
   .hero h1 {
     font-size: 38px;
-    @media (max-width: 768px) {
+  }
+
   .card {
     width: 100%;
   }
-  }
-  }
-
-  nav {
-    padding: 20px;
-  }
 }
+
 </style>
 </head>
 
 <body>
+
+<div class="container">
 
 <nav>
   <div class="logo">OPERON</div>
   <div class="nav-btn">Watch Demo</div>
 </nav>
 
-<section class="hero">
-  <h1>Voice is the interface.<br><span>Command everything.</span></h1>
-  <p>Self-learning voice command systems for any industry.</p>
+</div>
 
-  <div class="buttons">
-    <div class="btn-primary">Watch Demo</div>
-    <div class="btn-secondary">Explore Platform</div>
+<section class="hero">
+  <div class="container">
+
+    <h1>
+      Voice is the interface.<br>
+      <span>Command everything.</span>
+    </h1>
+
+    <p>
+      Self-learning voice command systems for any industry.
+    </p>
+
+    <div class="buttons">
+      <div class="btn-primary">Watch Demo</div>
+      <div class="btn-secondary">Explore Platform</div>
+    </div>
+
   </div>
 </section>
 
 <section class="section">
-  <h2>Built for Every Industry</h2>
+  <div class="container">
 
-  <div class="cards">
+    <h2>Built for Every Industry</h2>
 
-    <div class="card ordo">
-      <h3>Ordo</h3>
-      <p>Search is dead. Just say it. We’ll handle everything.</p>
-      <div class="learn">Learn more →</div>
-    </div>
+    <div class="cards">
 
-    <div class="card orbis">
-      <h3>Orbis</h3>
-      <p>Execution is everything. Just say it. We’ll handle the rest.</p>
-      <div class="learn">Learn more →</div>
-    </div>
+      <div class="card ordo">
+        <h3>Ordo</h3>
+        <p>Search is dead. Just say it. We’ll handle everything.</p>
+        <div class="learn">Learn more →</div>
+      </div>
 
-    <div class="card moto">
-      <h3>Moto</h3>
-      <p>Say it done. We’ll handle the rest.</p>
-      <div class="learn">Learn more →</div>
+      <div class="card orbis">
+        <h3>Orbis</h3>
+        <p>Execution is everything. Just say it. We’ll handle the rest.</p>
+        <div class="learn">Learn more →</div>
+      </div>
+
+      <div class="card moto">
+        <h3>Moto</h3>
+        <p>Say it done. We’ll handle the rest.</p>
+        <div class="learn">Learn more →</div>
+      </div>
+
     </div>
 
   </div>
 </section>
 
 <section class="mic-section">
-  <div class="mic"><span>🎤</span></div>
+  <div class="mic">🎤</div>
 </section>
 
 <div class="footer">
